@@ -2,6 +2,7 @@ import { FaqSection } from '@/components/langrisserseaofsword/faq-section';
 import {
   MobileWikiNav,
   QuickWikiLinks,
+  WikiRouteSidebar,
 } from '@/components/langrisserseaofsword/wiki-navigation';
 import Container from '@/components/layout/container';
 import { JsonLd } from '@/components/seo/json-ld';
@@ -202,7 +203,6 @@ export function LangrisserSeaOfSwordHomePage({
               <p className="mt-4 max-w-2xl text-xs leading-5 text-[#aebcb8]">
                 {content.scopeNote}
               </p>
-              <MobileWikiNav currentPath="/" locale={locale} />
             </div>
 
             <div className="overflow-hidden rounded-xl border border-[#6ed2c5]/45 bg-black/80 shadow-2xl shadow-black/40">
@@ -236,250 +236,266 @@ export function LangrisserSeaOfSwordHomePage({
         </Container>
       </section>
 
-      <Container className="space-y-14 px-4 py-12">
-        <section>
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="text-[#6ed2c5] text-xs font-semibold uppercase tracking-[0.18em]">
-                Start here
-              </p>
-              <h2 className="mt-2 font-display text-3xl font-black md:text-4xl">
-                Four decisions before launch
-              </h2>
-            </div>
-            <LocaleLink
-              href="/guides"
-              className="inline-flex items-center gap-2 text-[#d8b060] text-sm underline underline-offset-4"
-            >
-              Browse all pages <ArrowRight className="size-4" />
-            </LocaleLink>
-          </div>
-          <div className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-            {startRoutes.map((route) => (
-              <LocaleLink
-                key={route.href}
-                href={route.href}
-                className="group rounded-xl border border-[#39505a] bg-[#0d2029] p-4 transition hover:border-[#6ed2c5]"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="grid size-9 place-items-center rounded-lg bg-[#d8b060]/15 text-[#d8b060]">
-                    <route.icon className="size-4" />
-                  </span>
-                  <h3 className="font-display text-lg font-bold">
-                    {route.label}
-                  </h3>
-                </div>
-                <p className="mt-3 text-sm leading-6 text-[#aebcb8]">
-                  {route.text}
-                </p>
-                <span className="mt-3 inline-flex items-center gap-1 text-[#6ed2c5] text-xs font-semibold">
-                  Open{' '}
-                  <ArrowRight className="size-3 transition group-hover:translate-x-1" />
-                </span>
-              </LocaleLink>
-            ))}
-          </div>
-        </section>
+      <Container className="px-4 py-12">
+        <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_272px]">
+          <main className="min-w-0 space-y-14">
+            <MobileWikiNav currentPath="/" locale={locale} />
 
-        <section>
-          <div>
-            <p className="text-[#6ed2c5] text-xs font-semibold uppercase tracking-[0.18em]">
-              Core systems
-            </p>
-            <h2 className="mt-2 font-display text-3xl font-black md:text-4xl">
-              Build a reliable pre-launch picture
-            </h2>
-          </div>
-          <div className="mt-6 grid gap-4 lg:grid-cols-3">
-            {systemGroups.map((group) => (
-              <article
-                key={group.title}
-                className="rounded-xl border border-[#39505a] bg-[#0d2029] p-5"
-              >
-                <div className="flex items-center gap-3">
-                  <group.icon className="size-5 text-[#d8b060]" />
-                  <h3 className="font-display text-xl font-bold">
-                    {group.title}
-                  </h3>
+            <section>
+              <div className="flex flex-wrap items-end justify-between gap-4">
+                <div>
+                  <p className="text-[#6ed2c5] text-xs font-semibold uppercase tracking-[0.18em]">
+                    Start here
+                  </p>
+                  <h2 className="mt-2 font-display text-3xl font-black md:text-4xl">
+                    Four decisions before launch
+                  </h2>
                 </div>
-                <p className="mt-3 text-sm leading-6 text-[#aebcb8]">
-                  {group.text}
+                <LocaleLink
+                  href="/guides"
+                  className="inline-flex items-center gap-2 text-[#d8b060] text-sm underline underline-offset-4"
+                >
+                  Browse all pages <ArrowRight className="size-4" />
+                </LocaleLink>
+              </div>
+              <div className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+                {startRoutes.map((route) => (
+                  <LocaleLink
+                    key={route.href}
+                    href={route.href}
+                    className="group rounded-xl border border-[#39505a] bg-[#0d2029] p-4 transition hover:border-[#6ed2c5]"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="grid size-9 place-items-center rounded-lg bg-[#d8b060]/15 text-[#d8b060]">
+                        <route.icon className="size-4" />
+                      </span>
+                      <h3 className="font-display text-lg font-bold">
+                        {route.label}
+                      </h3>
+                    </div>
+                    <p className="mt-3 text-sm leading-6 text-[#aebcb8]">
+                      {route.text}
+                    </p>
+                    <span className="mt-3 inline-flex items-center gap-1 text-[#6ed2c5] text-xs font-semibold">
+                      Open{' '}
+                      <ArrowRight className="size-3 transition group-hover:translate-x-1" />
+                    </span>
+                  </LocaleLink>
+                ))}
+              </div>
+            </section>
+
+            <section>
+              <div>
+                <p className="text-[#6ed2c5] text-xs font-semibold uppercase tracking-[0.18em]">
+                  Core systems
                 </p>
-                <div className="mt-4 grid gap-2">
-                  {group.links.map(([href, label]) => (
-                    <LocaleLink
-                      key={href}
-                      href={href}
-                      className="flex min-w-0 items-center justify-between gap-3 rounded-lg border border-[#39505a] bg-[#07131b] px-3 py-2 text-sm text-[#f5efe1] hover:border-[#6ed2c5]"
+                <h2 className="mt-2 font-display text-3xl font-black md:text-4xl">
+                  Build a reliable pre-launch picture
+                </h2>
+              </div>
+              <div className="mt-6 grid gap-4 lg:grid-cols-3">
+                {systemGroups.map((group) => (
+                  <article
+                    key={group.title}
+                    className="rounded-xl border border-[#39505a] bg-[#0d2029] p-5"
+                  >
+                    <div className="flex items-center gap-3">
+                      <group.icon className="size-5 text-[#d8b060]" />
+                      <h3 className="font-display text-xl font-bold">
+                        {group.title}
+                      </h3>
+                    </div>
+                    <p className="mt-3 text-sm leading-6 text-[#aebcb8]">
+                      {group.text}
+                    </p>
+                    <div className="mt-4 grid gap-2">
+                      {group.links.map(([href, label]) => (
+                        <LocaleLink
+                          key={href}
+                          href={href}
+                          className="flex min-w-0 items-center justify-between gap-3 rounded-lg border border-[#39505a] bg-[#07131b] px-3 py-2 text-sm text-[#f5efe1] hover:border-[#6ed2c5]"
+                        >
+                          <span className="min-w-0 break-words">{label}</span>
+                          <ArrowRight className="size-4 shrink-0 text-[#6ed2c5]" />
+                        </LocaleLink>
+                      ))}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+
+            <section>
+              <div className="flex flex-wrap items-end justify-between gap-4">
+                <div>
+                  <p className="text-[#6ed2c5] text-xs font-semibold uppercase tracking-[0.18em]">
+                    Latest pages
+                  </p>
+                  <h2 className="mt-2 font-display text-3xl font-black md:text-4xl">
+                    Source-checked launch coverage
+                  </h2>
+                </div>
+                <Badge
+                  variant="outline"
+                  className="border-[#d8b060]/50 text-[#f5efe1]"
+                >
+                  Updated July 23, 2026
+                </Badge>
+              </div>
+              <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                {featuredGuides.map((guide) => (
+                  <LocaleLink
+                    key={guide.slug}
+                    href={guide.path}
+                    className="group overflow-hidden rounded-xl border border-[#39505a] bg-[#0d2029] hover:border-[#6ed2c5]"
+                  >
+                    <div className="relative aspect-video border-[#39505a] border-b">
+                      <Image
+                        src={guide.coverImageUrl}
+                        alt={`${guide.title} cover`}
+                        fill
+                        sizes="(min-width: 1280px) 400px, (min-width: 768px) 50vw, 100vw"
+                        className="object-cover transition duration-300 group-hover:scale-[1.02]"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#07131b]/90 to-transparent" />
+                    </div>
+                    <div className="p-4">
+                      <p className="text-[#6ed2c5] text-xs font-semibold uppercase tracking-[0.14em]">
+                        {guide.category}
+                      </p>
+                      <h3 className="mt-2 font-display text-xl font-bold">
+                        {guide.title}
+                      </h3>
+                      <p className="mt-2 line-clamp-2 text-sm leading-6 text-[#aebcb8]">
+                        {guide.summary}
+                      </p>
+                    </div>
+                  </LocaleLink>
+                ))}
+              </div>
+            </section>
+
+            <section className="grid gap-5 xl:grid-cols-[1.1fr_0.9fr]">
+              <div className="rounded-xl border border-[#39505a] bg-[#0d2029] p-6">
+                <div className="flex items-center gap-3">
+                  <Sparkles className="size-5 text-[#d8b060]" />
+                  <h2 className="font-display text-2xl font-black">
+                    Confirmed game snapshot
+                  </h2>
+                </div>
+                <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                  {facts.map((fact) => (
+                    <div
+                      key={fact.label}
+                      className="rounded-lg border border-[#39505a] bg-[#07131b] p-4"
                     >
-                      <span className="min-w-0 break-words">{label}</span>
-                      <ArrowRight className="size-4 shrink-0 text-[#6ed2c5]" />
-                    </LocaleLink>
+                      <p className="text-[#6ed2c5] text-xs font-semibold uppercase tracking-[0.14em]">
+                        {fact.label}
+                      </p>
+                      <p className="mt-2 text-sm leading-6 text-[#c8d1ce]">
+                        {fact.value}
+                      </p>
+                    </div>
                   ))}
                 </div>
-              </article>
-            ))}
-          </div>
-        </section>
+              </div>
 
-        <section>
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
+              <div className="rounded-xl border border-[#39505a] bg-[#0d2029] p-6">
+                <div className="flex items-center gap-3">
+                  <BookOpen className="size-5 text-[#d8b060]" />
+                  <h2 className="font-display text-2xl font-black">
+                    Official destinations
+                  </h2>
+                </div>
+                <div className="mt-5 grid gap-2">
+                  {[
+                    ['Official site', siteFacts.officialWebsiteUrl, Smartphone],
+                    [
+                      'Steam App 4808030',
+                      siteFacts.officialSteamUrl,
+                      MonitorCog,
+                    ],
+                    [
+                      'Official YouTube',
+                      siteFacts.officialYouTubeUrl,
+                      Gamepad2,
+                    ],
+                    ['Official Discord', siteFacts.officialDiscordUrl, Users],
+                  ].map(([label, href, Icon]) => {
+                    const LinkIcon = Icon as typeof Smartphone;
+                    return (
+                      <a
+                        key={label as string}
+                        href={href as string}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex items-center justify-between gap-3 rounded-lg border border-[#39505a] bg-[#07131b] px-4 py-3 text-sm hover:border-[#6ed2c5]"
+                      >
+                        <span className="flex items-center gap-3">
+                          <LinkIcon className="size-4 text-[#6ed2c5]" />
+                          {label as string}
+                        </span>
+                        <ExternalLink className="size-4 text-[#d8b060]" />
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            </section>
+
+            <section>
               <p className="text-[#6ed2c5] text-xs font-semibold uppercase tracking-[0.18em]">
-                Latest pages
-              </p>
-              <h2 className="mt-2 font-display text-3xl font-black md:text-4xl">
-                Source-checked launch coverage
-              </h2>
-            </div>
-            <Badge
-              variant="outline"
-              className="border-[#d8b060]/50 text-[#f5efe1]"
-            >
-              Updated July 23, 2026
-            </Badge>
-          </div>
-          <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {featuredGuides.map((guide) => (
-              <LocaleLink
-                key={guide.slug}
-                href={guide.path}
-                className="group overflow-hidden rounded-xl border border-[#39505a] bg-[#0d2029] hover:border-[#6ed2c5]"
-              >
-                <div className="relative aspect-video border-[#39505a] border-b">
-                  <Image
-                    src={guide.coverImageUrl}
-                    alt={`${guide.title} cover`}
-                    fill
-                    sizes="(min-width: 1280px) 400px, (min-width: 768px) 50vw, 100vw"
-                    className="object-cover transition duration-300 group-hover:scale-[1.02]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#07131b]/90 to-transparent" />
-                </div>
-                <div className="p-4">
-                  <p className="text-[#6ed2c5] text-xs font-semibold uppercase tracking-[0.14em]">
-                    {guide.category}
-                  </p>
-                  <h3 className="mt-2 font-display text-xl font-bold">
-                    {guide.title}
-                  </h3>
-                  <p className="mt-2 line-clamp-2 text-sm leading-6 text-[#aebcb8]">
-                    {guide.summary}
-                  </p>
-                </div>
-              </LocaleLink>
-            ))}
-          </div>
-        </section>
-
-        <section className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-xl border border-[#39505a] bg-[#0d2029] p-6">
-            <div className="flex items-center gap-3">
-              <Sparkles className="size-5 text-[#d8b060]" />
-              <h2 className="font-display text-2xl font-black">
-                Confirmed game snapshot
-              </h2>
-            </div>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2">
-              {facts.map((fact) => (
-                <div
-                  key={fact.label}
-                  className="rounded-lg border border-[#39505a] bg-[#07131b] p-4"
-                >
-                  <p className="text-[#6ed2c5] text-xs font-semibold uppercase tracking-[0.14em]">
-                    {fact.label}
-                  </p>
-                  <p className="mt-2 text-sm leading-6 text-[#c8d1ce]">
-                    {fact.value}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="rounded-xl border border-[#39505a] bg-[#0d2029] p-6">
-            <div className="flex items-center gap-3">
-              <BookOpen className="size-5 text-[#d8b060]" />
-              <h2 className="font-display text-2xl font-black">
-                Official destinations
-              </h2>
-            </div>
-            <div className="mt-5 grid gap-2">
-              {[
-                ['Official site', siteFacts.officialWebsiteUrl, Smartphone],
-                ['Steam App 4808030', siteFacts.officialSteamUrl, MonitorCog],
-                ['Official YouTube', siteFacts.officialYouTubeUrl, Gamepad2],
-                ['Official Discord', siteFacts.officialDiscordUrl, Users],
-              ].map(([label, href, Icon]) => {
-                const LinkIcon = Icon as typeof Smartphone;
-                return (
-                  <a
-                    key={label as string}
-                    href={href as string}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center justify-between gap-3 rounded-lg border border-[#39505a] bg-[#07131b] px-4 py-3 text-sm hover:border-[#6ed2c5]"
-                  >
-                    <span className="flex items-center gap-3">
-                      <LinkIcon className="size-4 text-[#6ed2c5]" />
-                      {label as string}
-                    </span>
-                    <ExternalLink className="size-4 text-[#d8b060]" />
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <p className="text-[#6ed2c5] text-xs font-semibold uppercase tracking-[0.18em]">
-            Wiki index
-          </p>
-          <h2 className="mt-2 font-display text-3xl font-black">
-            Every supported search route
-          </h2>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {content.keywordRoutes.map((route) => (
-              <LocaleLink
-                key={route.route}
-                href={route.route}
-                title={route.intent}
-                className="rounded-full border border-[#39505a] bg-[#0d2029] px-3 py-2 text-sm text-[#c8d1ce] hover:border-[#6ed2c5] hover:text-[#fff9eb]"
-              >
-                {route.label}
-              </LocaleLink>
-            ))}
-          </div>
-        </section>
-
-        <FaqSection items={content.faq} title="Sea of Sword wiki FAQ" />
-
-        <section className="rounded-xl border border-[#d8b060]/50 bg-[linear-gradient(135deg,#132a34_0%,#0d2029_60%,#2a2420_100%)] p-6 md:p-8">
-          <div className="flex flex-col justify-between gap-5 md:flex-row md:items-center">
-            <div>
-              <p className="text-[#6ed2c5] text-xs font-semibold uppercase tracking-[0.18em]">
-                Stay on the official path
+                Wiki index
               </p>
               <h2 className="mt-2 font-display text-3xl font-black">
-                Wishlist on Steam, then track the real release.
+                Every supported search route
               </h2>
-            </div>
-            <Button
-              asChild
-              className="h-auto shrink-0 bg-[#d8b060] px-5 py-3 text-[#07131b] hover:bg-[#6ed2c5]"
-            >
-              <a
-                href={siteFacts.officialSteamUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Open Steam
-                <ExternalLink className="size-4" />
-              </a>
-            </Button>
-          </div>
-        </section>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {content.keywordRoutes.map((route) => (
+                  <LocaleLink
+                    key={route.route}
+                    href={route.route}
+                    title={route.intent}
+                    className="rounded-full border border-[#39505a] bg-[#0d2029] px-3 py-2 text-sm text-[#c8d1ce] hover:border-[#6ed2c5] hover:text-[#fff9eb]"
+                  >
+                    {route.label}
+                  </LocaleLink>
+                ))}
+              </div>
+            </section>
+
+            <FaqSection items={content.faq} title="Sea of Sword wiki FAQ" />
+
+            <section className="rounded-xl border border-[#d8b060]/50 bg-[linear-gradient(135deg,#132a34_0%,#0d2029_60%,#2a2420_100%)] p-6 md:p-8">
+              <div className="flex flex-col justify-between gap-5 md:flex-row md:items-center">
+                <div>
+                  <p className="text-[#6ed2c5] text-xs font-semibold uppercase tracking-[0.18em]">
+                    Stay on the official path
+                  </p>
+                  <h2 className="mt-2 font-display text-3xl font-black">
+                    Wishlist on Steam, then track the real release.
+                  </h2>
+                </div>
+                <Button
+                  asChild
+                  className="h-auto shrink-0 bg-[#d8b060] px-5 py-3 text-[#07131b] hover:bg-[#6ed2c5]"
+                >
+                  <a
+                    href={siteFacts.officialSteamUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Open Steam
+                    <ExternalLink className="size-4" />
+                  </a>
+                </Button>
+              </div>
+            </section>
+          </main>
+
+          <WikiRouteSidebar currentPath="/" locale={locale} />
+        </div>
       </Container>
     </div>
   );
