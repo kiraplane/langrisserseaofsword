@@ -1,6 +1,6 @@
 import type { Guide, GuideVideo } from './types';
 
-const checkedAt = '2026-07-24';
+const checkedAt = '2026-07-29';
 
 const gameplayVideo: GuideVideo = {
   id: 'bcJ7phaqj4c',
